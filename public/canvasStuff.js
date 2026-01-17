@@ -66,7 +66,3 @@ canvas.addEventListener('mousemove', (event) => {
     player.locY -= speed * yV;
   }
 });
-
-const init = () => {
-  draw();
-};

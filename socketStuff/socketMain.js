@@ -1,9 +1,9 @@
-const io = require('../servers').io;
-const app = require('../servers').app;
-const Player = require('./classes/Player');
-const PlayerConfig = require('./classes/PlayerConfig');
-const PlayerData = require('./classes/PlayerData');
-const Orb = require('./classes/Orb');
+const io = require("../servers").io;
+const app = require("../servers").app;
+const Player = require("./classes/Player");
+const PlayerConfig = require("./classes/PlayerConfig");
+const PlayerData = require("./classes/PlayerData");
+const Orb = require("./classes/Orb");
 
 const orbs = [];
 const settings = {
@@ -15,19 +15,19 @@ const settings = {
   wordlHeight: 500,
   defaultGenericOrbSize: 5,
 };
+const players = [];
 
 initGame();
 
-io.on('connect', (socket) => {
-  // a player has connected
-  const playerName = 'Yurii';
-  const playerConfig = new PlayerConfig(settings);
-  const playerData = new PlayerData(playerName, settings);
-  const player = new Player(socket.id, playerConfig, playerData);
+io.on("connect", (socket) => {
+  socket.on("init", (playerObj, ackCallback) => {
+    const playerName = playerObj.playerName;
+    const playerConfig = new PlayerConfig(settings);
+    const playerData = new PlayerData(playerName, settings);
+    const player = new Player(socket.id, playerConfig, playerData);
+    players.push(player);
 
-  socket.emit('init', {
-    // make a playerConfig object
-    orbs,
+    ackCallback(orbs);
   });
 });
 
