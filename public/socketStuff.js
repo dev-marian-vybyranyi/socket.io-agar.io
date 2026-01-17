@@ -1,4 +1,4 @@
-const socket = io.connect("http://localhost:9000");
+const socket = io.connect("https://socket-io-agar-io.vercel.app");
 
 const init = async () => {
   const initData = await socket.emitWithAck("init", {
