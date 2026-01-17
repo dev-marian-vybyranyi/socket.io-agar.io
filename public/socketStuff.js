@@ -1,4 +1,4 @@
-const socket = io.connect("https://socket-io-agar-io.vercel.app");
+const socket = io.connect("https://socket-io-agar-io.onrender.com");
 
 const init = async () => {
   const initData = await socket.emitWithAck("init", {

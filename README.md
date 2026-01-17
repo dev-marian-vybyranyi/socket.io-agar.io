@@ -27,4 +27,4 @@ Then open your browser and navigate to `http://localhost:9000`.
 - `expressStuff/`: Express configuration.
 - `index.js`: Loads the main modules.
 
-Try it here: `https://socket-io-agar-io.vercel.app/`
+Try it here: `https://socket-io-agar-io.onrender.com`
