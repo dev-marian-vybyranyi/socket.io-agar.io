@@ -1,17 +1,11 @@
-// player.locX = Math.floor(500 * Math.random() + 10);
-// player.locY = Math.floor(500 * Math.random() + 10);
-
 const draw = () => {
-  // reset the context translate back to default
   context.setTransform(1, 0, 0, 1, 0, 0);
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  // clamp the screen/vp to the players location (x, y)
   const camX = -player.locX + canvas.width / 2;
   const camY = -player.locY + canvas.height / 2;
   context.translate(camX, camY);
 
-  // Draw all the players
   players.forEach((p) => {
     context.beginPath();
     context.fillStyle = p.playerData.color;
@@ -21,14 +15,13 @@ const draw = () => {
       p.playerData.radius,
       0,
       2 * Math.PI
-    ); // draw an arc/circle, x,y,radius, start point, end point
+    );
     context.fill();
     context.lineWidth = 3;
     context.strokeStyle = 'rgb(0, 255, 0)';
     context.stroke();
   });
 
-  // Draw all orbs
   orbs.forEach((orb) => {
     context.beginPath();
     context.fillStyle = orb.color;
@@ -40,7 +33,6 @@ const draw = () => {
 };
 
 canvas.addEventListener('mousemove', (event) => {
-  //   console.log(event);
   const mousePosition = {
     x: event.clientX,
     y: event.clientY,
